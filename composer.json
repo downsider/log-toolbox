@@ -1,0 +1,34 @@
+{
+  "name": "downsider/log-toolbox",
+  "description": "Various processors and handlers for PSR-3 compliant logging libraries",
+  "license": "MIT",
+  "homepage": "https://github.com/downsider/log-toolbox",
+  "require": {
+    "php": ">=5.4.0",
+    "monolog/monolog": "^1.11",
+    "psr/log": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "mockery/mockery": "0.9.*",
+    "guzzlehttp/guzzle": "^6.0",
+    "silktide/queueball": "^2.0",
+    "silktide/reposition": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Downsider\\LogToolbox\\": "src",
+      "Downsider\\LogToolbox\\Test\\": "test"
+    }
+  },
+  "suggest": {
+    "downsider/puzzle-di": "Auto configured dependency injection for modules"
+  },
+  "extra": {
+    "downsider-puzzle-di": {
+      "silktide/syringe": {
+        "path": "config/syringe.json"
+      }
+    }
+  }
+}
