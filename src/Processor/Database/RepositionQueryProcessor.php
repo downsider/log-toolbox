@@ -30,9 +30,17 @@ class RepositionQueryProcessor
         $this->startTime = microtime(true);
     }
 
-    public function __invoke(array $record)
+    public function recordQueryEnd()
     {
         $this->extra["duration"] = microtime(true) - $this->startTime;
+        $this->startTime = null;
+    }
+
+    public function __invoke(array $record)
+    {
+        if (!empty($this->startTime)) {
+            $this->recordQueryEnd();
+        }
         return $this->invoke($record);
     }
 
