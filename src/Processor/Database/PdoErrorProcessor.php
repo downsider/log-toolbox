@@ -7,13 +7,14 @@
 namespace Downsider\LogToolbox\Processor\Database;
 
 use Downsider\LogToolbox\Processor\PreProcessorTrait;
+use Silktide\Reposition\Storage\Logging\ErrorLogProcessorInterface;
 
-class PdoErrorProcessor
+class PdoErrorProcessor implements ErrorLogProcessorInterface
 {
 
     use PreProcessorTrait;
 
-    public function recordSqlError($query, array $errorInfo)
+    public function recordError($query, array $errorInfo)
     {
         $this->extra["query"] = $query;
         $this->extra["ansiErrorCode"] = $errorInfo[0];

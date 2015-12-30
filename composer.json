@@ -13,7 +13,7 @@
     "mockery/mockery": "0.9.*",
     "guzzlehttp/guzzle": "^6.0",
     "silktide/queueball": "^2.0",
-    "silktide/reposition": "^1.0"
+    "silktide/reposition": "^1.5"
   },
   "autoload": {
     "psr-4": {

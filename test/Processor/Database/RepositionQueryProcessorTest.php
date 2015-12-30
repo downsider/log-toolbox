@@ -5,7 +5,7 @@
  */
 namespace Downsider\LogToolbox\Test\Processor\Database;
 
-use Downsider\LogToolbox\Processor\Database\RepositionQueryProcessor;
+use Downsider\LogToolbox\Processor\Database\QueryLogProcessor;
 
 class RepositionQueryProcessorTest extends \PHPUnit_Framework_TestCase {
 
@@ -17,7 +17,7 @@ class RepositionQueryProcessorTest extends \PHPUnit_Framework_TestCase {
         
         $query  = \Mockery::mock("Silktide\\Reposition\\QueryInterpreter\\CompiledQuery")->shouldIgnoreMissing("");
         
-        $processor = new RepositionQueryProcessor();
+        $processor = new QueryLogProcessor();
         
         $record = ["extra" => []];
         $processor->recordQueryStart($query);

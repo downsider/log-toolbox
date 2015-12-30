@@ -8,8 +8,9 @@ namespace Downsider\LogToolbox\Processor\Database;
 
 use Downsider\LogToolbox\Processor\PreProcessorTrait;
 use Silktide\Reposition\QueryInterpreter\CompiledQuery;
+use Silktide\Reposition\Storage\Logging\QueryLogProcessorInterface;
 
-class RepositionQueryProcessor 
+class QueryLogProcessor implements QueryLogProcessorInterface
 {
     use PreProcessorTrait {
         __invoke as protected invoke;
