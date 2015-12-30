@@ -1,3 +1,53 @@
 parameters:
+    defaultLogQueueId: null
+    
+    serverId: ""
 
 services:
+#    guzzle:
+#        class: GuzzleHttp\Client
+#        arguments:
+#            -
+#                on_stats: [@apiLogProcessor, "recordTransferStats"]
+
+#    handlerStack:
+#        class: GuzzleHttp\HandlerStack
+#        factoryService: @guzzle
+#        factoryMethod: "getConfig"
+#        arguments:
+#            - "handler"
+#        calls:
+#            -
+#                method: "push"
+#                arguments: @loggingMiddleware
+
+    apiLogProcessor:
+        class: Downsider\LogToolbox\Processor\Api\ApiRequestProcessor
+
+    executionIdProcessor:
+        class: Downsider\LogToolbox\Processor\ExecutionIdProcessor
+
+    dbQueryLogProcessor:
+        class: Downsider\LogToolbox\Processor\Database\QueryLogProcessor
+
+    dbErrorLogProcessor:
+        class: Downsider\LogToolbox\Processor\Database\PdoErrorProcessor
+
+    loggingMiddleware:
+        class: Downsider\LogToolbox\HttpMiddleware\LoggingMiddleware
+        arguments:
+            - @defaultLogger
+
+    queueballHandler:
+        class: Downsider\LogToolbox\Handler\QueueBallHandler
+        arguments:
+            - @silktide_queueball.defaultQueue
+            - @loggerheadFormatter
+            - %defaultLogQueueId%
+
+    queueballFormatter:
+        class: Downsider\LogToolbox\Formatter\LoggerheadFormatter
+
+    loggerheadFormatter:
+        class: Downsider\LogToolbox\Formatter\LoggerheadFormatter
+
